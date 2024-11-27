@@ -1,0 +1,85 @@
+<!-- summary.component.html -->
+<div class="summary-page">
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb">
+        <button mat-flat-button color="primary" class="back-btn" (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon>
+            Back
+        </button>
+        <a class="breadcrumb-item" [routerLink]="['/home/dashboard']" routerLinkActive="router-link-active">Product
+            Details</a>
+        <mat-icon>chevron_right</mat-icon>
+        <span class="breadcrumb-item active">Summary</span>
+    </div>
+
+    <!-- Selected Products Table -->
+    <section class="products-section">
+        <h2>Selected Products</h2>
+        <mat-card>
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>Product name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Deduction</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of selectedProducts">
+                        <td>{{product.title}}</td>
+                        <td>{{product.quantity}}</td>
+                        <td>{{product.price}} kes</td>
+                        <td>{{product.total}} kes</td>
+                        <td><strong>{{product.deduction}} kes</strong></td>
+                        <td>
+                            <button mat-icon-button color="warn" (click)="removeProduct(product)">
+                                <mat-icon>remove_circle_outline</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="4">Total</td>
+                        <td colspan="2"><strong>{{totalDeduction}} kes</strong></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-card>
+    </section>
+
+    <!-- Verification Code Section -->
+    <section class="verification-section">
+        <p class="verification-text">
+            Enter the <strong>verification code</strong> sent to the parent at
+            <strong>072*****715</strong> via SMS.
+        </p>
+
+        <div class="otp-container">
+            <input *ngFor="let i of [0,1,2,3,4,5]" type="text" maxlength="1" [formControl]="otpControls[i]"
+                (keyup)="onOtpInput($event, i)" class="otp-input">
+        </div>
+
+        <p class="resend-text">
+            Didn't receive OTP? Resend in
+            <span class="countdown">1min {{seconds}}sec</span>
+        </p>
+
+        <div class="action-buttons">
+            <button mat-stroked-button class="back-button" (click)="goBack()">
+                Back
+            </button>
+            <button mat-flat-button class="pay-button" [disabled]="!isOtpComplete()" (click)="pay()">
+                Pay {{totalDeduction}} Kes
+            </button>
+        </div>
+
+        <p class="warning-text">
+            You will receive {{totalDeduction}}.00 kes from the subsidy program.
+            If this does not cover the total cost of the purchase ensure you get
+            the balance from the customer.
+        </p>
+    </section>
+</div>

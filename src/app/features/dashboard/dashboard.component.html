@@ -1,0 +1,108 @@
+<div class="page-title">
+    <h2>Product Details</h2>
+</div>
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+    <button mat-flat-button color="primary" class="back-btn" (click)="goBack()">
+        <mat-icon>chevron_left</mat-icon>
+        Back
+    </button>
+    <p style="color: #707070;">Product Details</p>
+</div>
+
+<!-- Wallet Balance -->
+<div class="wallet-info">
+    <span class="wallet-label">Inua mkulima wallet balance:</span>
+    <span class="wallet-amount">Kes {{walletBalance}}</span>
+</div>
+
+<!-- Products Section -->
+<div class="products-container">
+    <div class="products-list">
+        <h3>Products</h3>
+        <mat-card>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th class="product-name">Product name</th>
+                        <th class="product-price">Price</th>
+                        <th class="product-action"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of products" class="product-row">
+                        <td class="product-name">{{product.title}}</td>
+                        <td class="product-price">{{product.price}} kes</td>
+                        <td class="product-action">
+                            <button mat-icon-button class="add-button" (click)="addProduct(product)">
+                                <mat-icon>add_circle_outline</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-card>
+    </div>
+
+    <div class="selected-products">
+        <h3>Selected Products</h3>
+        <mat-card class="selected-products-card">
+            <div *ngIf="selectedProducts.length === 0" class="empty-selection">
+                Please select a products from the products panel first
+            </div>
+
+            <table class="selected-products-table" *ngIf="selectedProducts.length > 0">
+                <thead>
+                    <tr>
+                        <th>Product name</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Deduction</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of selectedProducts">
+                        <td class="product-name">{{product.title}}</td>
+                        <td class="qty-cell">
+                            <input type="number" [value]="product.quantity ?? 1"
+                                (change)="updateQuantity(product, $event)" class="qty-input" min="1" placeholder="1">
+                        </td>
+                        <td class="price">{{product.price}} kes</td>
+                        <td class="total">{{product.total | number:'1.2-2'}} kes</td>
+                        <td class="deduction-cell">
+                            <input type="number" [value]="product.deduction" (change)="updateDeduction(product, $event)"
+                                class="deduction-input" [max]="product.price * (product.quantity ?? 1)"
+                                #deductionInput="ngModel" [(ngModel)]="product.deduction">
+                            <mat-error *ngIf="deductionInput.errors?.['max']" style="color: red;">
+                                <small>Deduction cannot exceed total price of {{product.price * (product.quantity ??
+                                    1)}} kes</small>
+                            </mat-error>
+                        </td>
+                        <td>
+                            <button mat-icon-button class="remove-button" (click)="removeProduct(product)">
+                                <mat-icon>remove_circle_outline</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="4">Total</td>
+                        <td colspan="2" class="total-amount">{{totalDeduction}} kes</td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-card>
+
+        <button mat-flat-button color="primary" class="deduct-btn" [disabled]="totalDeduction === 0"
+            (click)="navigateToSummary()">
+            Deduct {{totalDeduction}} KES
+        </button>
+    </div>
+</div>
+
+
+<div class="deduction-info" *ngIf="totalDeduction > 0">
+    <p>You will receive {{totalDeduction}} kes from the subsidy program. If this does not cover the total cost of the
+        purchase ensure you get the balance from the customer.</p>
+</div>

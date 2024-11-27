@@ -1,0 +1,92 @@
+.success-container {
+  max-width: 600px;
+  margin: 48px auto;
+  text-align: center;
+  padding: 0 16px;
+
+  .success-title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+
+  .transaction-details {
+    margin-bottom: 32px;
+
+    .detail-row {
+      margin: 8px 0;
+
+      .label {
+        color: #666;
+        margin-right: 8px;
+      }
+
+      .value {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .success-icon {
+    margin: 32px 0;
+
+    .rays {
+      animation: shine 2s ease-in-out infinite;
+    }
+  }
+
+  .amount {
+    font-size: 36px;
+    font-weight: 600;
+    margin: 24px 0;
+  }
+
+  .purchase-info {
+    margin: 24px 0;
+
+    p {
+      margin: 8px 0;
+      color: #666;
+    }
+
+    .customer-name {
+      font-weight: 500;
+      color: #000;
+      font-size: 18px;
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 48px;
+
+    button {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .download-btn {
+      border: 1px solid #ccc;
+    }
+
+    .done-btn {
+      background-color: #000;
+      color: white;
+    }
+  }
+}
+
+@keyframes shine {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}

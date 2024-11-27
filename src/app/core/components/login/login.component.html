@@ -1,0 +1,61 @@
+<!-- login.component.html -->
+<div class="login-container">
+    <div class="image-section">
+        <div class="overlay">
+            <img src="../../../../assets/images/logo.svg" alt="Bank logo" class="bank-logo">
+        </div>
+    </div>
+
+    <div class="form-section">
+        <mat-card>
+            <mat-card-content>
+                <div class="form-header">
+                    <h1>WELCOME TO</h1>
+                    <h2 class="program-title">Inua Mkulima - <br>Subsidy Program</h2>
+                </div>
+
+                <form [formGroup]="loginForm" class="login-form">
+                    <!-- Step 1: Username -->
+                    <div *ngIf="!showPasswordStep">
+                        <p>Enter your username to continue</p>
+                        <mat-form-field appearance="fill" floatLabel="always" class="full-width">
+                            <mat-label>Username</mat-label>
+                            <input matInput formControlName="username" type="text">
+                            <mat-error *ngIf="loginForm.get('username')?.errors?.['required']">
+                                Username is required
+                            </mat-error>
+                        </mat-form-field>
+
+                        <button mat-flat-button color="primary" class="signin-button" (click)="proceedToPassword()"
+                            [disabled]="!loginForm.get('username')?.value">
+                            Continue
+                            <mat-icon>arrow_forward</mat-icon>
+                        </button>
+                    </div>
+
+                    <!-- Step 2: Password -->
+                    <div *ngIf="showPasswordStep">
+                        <p>Enter your password to continue</p>
+
+                        <mat-form-field appearance="fill" floatLabel="always" class="full-width">
+                            <mat-label>Password</mat-label>
+                            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+                            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+                                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">
+                                Password is required
+                            </mat-error>
+                        </mat-form-field>
+
+                        <button mat-flat-button color="primary" class="signin-button" (click)="onSubmit()"
+                            [disabled]="!loginForm.get('password')?.value">
+                            Sign In
+                            <mat-icon>arrow_forward</mat-icon>
+                        </button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<!-- logout-dialog.component.html -->
+<div class="logout-dialog">
+    <h1 class="dialog-title">Log Out?</h1>
+
+    <div class="icon-container">
+        <svg width="80" height="80" viewBox="0 0 80 80">
+            <rect x="15" y="5" width="50" height="70" rx="5" stroke="black" fill="none" stroke-width="2" />
+            <circle cx="40" cy="65" r="3" fill="black" />
+            <path d="M35 10 h10" stroke="black" stroke-width="2" />
+            <!-- Logout icon in yellow -->
+            <g transform="translate(28, 30)">
+                <path d="M12 4 L22 4 L22 16 L12 16" stroke="#ffc107" fill="none" stroke-width="2" />
+                <path d="M2 10 L16 10 M2 10 L6 6 M2 10 L6 14" stroke="#ffc107" fill="none" stroke-width="2" />
+            </g>
+        </svg>
+    </div>
+
+    <p class="confirmation-text">Are you sure you want to log out?</p>
+
+    <div class="action-buttons">
+        <button mat-stroked-button class="back-btn" (click)="cancel()">
+            Back
+        </button>
+        <button mat-flat-button class="logout-btn" (click)="confirmLogout()">
+            Yes, log out
+        </button>
+    </div>
+</div>

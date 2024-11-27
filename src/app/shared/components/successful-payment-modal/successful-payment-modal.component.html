@@ -1,0 +1,45 @@
+<!-- payment-success.component.html -->
+<div class="success-container">
+    <h1 class="success-title">Payment Successful</h1>
+
+    <div class="transaction-details">
+        <div class="detail-row">
+            <span class="label">Ref Number:</span>
+            <span class="value">{{data.data.refNumber}}</span>
+        </div>
+
+        <div class="detail-row">
+            <span class="label">Date:</span>
+            <span class="value">{{today | date:'dd/MM/yyyy'}}</span>
+        </div>
+    </div>
+
+    <div class="success-icon">
+        <svg viewBox="0 0 100 100" width="80" height="80">
+            <circle cx="50" cy="50" r="45" fill="#fff" stroke="#000" stroke-width="2" />
+            <path d="M30 50 L45 65 L70 35" fill="none" stroke="#000" stroke-width="3" />
+            <g class="rays">
+                <line x1="50" y1="0" x2="50" y2="20" stroke="#000" stroke-width="2" />
+                <line x1="50" y1="80" x2="50" y2="100" stroke="#000" stroke-width="2" />
+                <line x1="0" y1="50" x2="20" y2="50" stroke="#000" stroke-width="2" />
+                <line x1="80" y1="50" x2="100" y2="50" stroke="#000" stroke-width="2" />
+            </g>
+        </svg>
+    </div>
+
+    <div class="amount">{{data.data.amount}} KES</div>
+
+    <div class="purchase-info">
+        <p>Agrovet product purchase for</p>
+        <p class="customer-name">{{data.data.customerName}}</p>
+    </div>
+
+    <div class="action-buttons">
+        <button mat-stroked-button class="download-btn" (click)="downloadReceipt()">
+            Download Receipt
+        </button>
+        <button mat-flat-button class="done-btn" (click)="done()">
+            Done
+        </button>
+    </div>
+</div>

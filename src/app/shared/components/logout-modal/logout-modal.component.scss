@@ -1,0 +1,56 @@
+.logout-dialog {
+  padding: 24px;
+  text-align: center;
+
+  .dialog-title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 32px;
+  }
+
+  .icon-container {
+    margin: 32px 0;
+    display: flex;
+    justify-content: center;
+
+    svg {
+      max-width: 80px;
+      height: auto;
+    }
+  }
+
+  .confirmation-text {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 32px;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+
+    button {
+      flex: 1;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .back-btn {
+      border: 1px solid #ccc;
+    }
+
+    .logout-btn {
+      background-color: #000;
+      color: white;
+    }
+  }
+}
+
+// Override Material Dialog styles
+::ng-deep .mat-dialog-container {
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}

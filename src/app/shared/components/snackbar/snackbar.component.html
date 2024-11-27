@@ -1,0 +1,25 @@
+<div class="snackbar-container" [ngClass]="{ unhappy: data.type === 'error', happy: data.type === 'success' }">
+    <div class="notification-content">
+        <div class="icons-set">
+            <mat-icon *ngIf="data.type === 'warning'" class="warning">warning</mat-icon>
+
+            <mat-icon *ngIf="data.type === 'success'" class="success">check_circle</mat-icon>
+
+            <mat-icon *ngIf="data.type === 'error'" class="error">error</mat-icon>
+        </div>
+
+        <div>
+            <div style="padding-left: 1em">
+                <span style="font-weight: bold" [innerHTML]="data.message.title"></span>
+                <br />
+                <span style="color: #666" [innerHTML]="data.message.description"></span>
+            </div>
+        </div>
+    </div>
+    <div class="button-content">
+        <div *ngFor="let button of data?.buttons">
+            <button class="item-button" color="primary" mat-stroked-button (click)="button.action()">{{button.text}}
+            </button>
+        </div>
+    </div>
+</div>

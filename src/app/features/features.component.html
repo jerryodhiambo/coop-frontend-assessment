@@ -1,0 +1,39 @@
+<mat-toolbar class="main-toolbar">
+    <span class="title">Inua Mkulima Subsidy Program</span>
+    <div class="user-info">
+        <span class="user-name">Logged In As: {{username}}</span>
+        <button mat-flat-button color="basic" class="logout-btn" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            Logout
+        </button>
+    </div>
+</mat-toolbar>
+
+<div class="page-container">
+    <!-- Sidebar -->
+    <mat-sidenav-container>
+        <mat-sidenav mode="side" opened class="sidenav">
+            <div class="sidebar-container">
+                <mat-nav-list>
+                    <a mat-list-item (click)="navigateTo('dashboard')" class="nav-item">
+                        <span>Dashboard</span>
+                        <div class="active-indicator"></div>
+                    </a>
+
+                    <a mat-list-item (click)="navigateTo('transactions')" class="nav-item">
+                        <span>Transactions</span>
+                        <div class="active-indicator"></div>
+                    </a>
+
+                    <a mat-list-item (click)="navigateTo('reports')" class="nav-item">
+                        <span>Reports</span>
+                        <div class="active-indicator"></div>
+                    </a>
+                </mat-nav-list>
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content class="main-content">
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
